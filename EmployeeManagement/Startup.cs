@@ -33,9 +33,17 @@ namespace EmployeeManagement
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles(); // static file middleware
+
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("MDW : 1 ");
+                await next();
+            });
+
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync(_configuration["Key"]);
+                await context.Response.WriteAsync("MDW : 2");
             });
         }
     }
