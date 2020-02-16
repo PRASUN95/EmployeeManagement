@@ -32,11 +32,10 @@ namespace EmployeeManagement
             {
                 app.UseDeveloperExceptionPage();
             }
-            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            defaultFilesOptions.DefaultFileNames.Add("CustomDefaultFile.html");
-            app.UseDefaultFiles(defaultFilesOptions); // order is important for default files
-            app.UseStaticFiles(); // static file middleware
+            FileServerOptions fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("CustomDefaultFile.html");
+            app.UseFileServer(fileServerOptions); // Replacement for DefaultFiles & StaticFiles middleware
             
             app.Use(async (context, next) =>
             {
