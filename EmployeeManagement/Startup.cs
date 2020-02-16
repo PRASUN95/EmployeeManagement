@@ -28,23 +28,23 @@ namespace EmployeeManagement
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.UseFileServer(); 
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("MDW : 1 ");
+            //    await next();
+            //});
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                DeveloperExceptionPageOptions developerExceptionPageOptions = new DeveloperExceptionPageOptions()
+                {
+                   SourceCodeLineCount = 1
+                };
+                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
-            FileServerOptions fileServerOptions = new FileServerOptions();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
-            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("CustomDefaultFile.html");
-            app.UseFileServer(fileServerOptions); // Replacement for DefaultFiles & StaticFiles middleware
-            
-            app.Use(async (context, next) =>
-            {
-                await context.Response.WriteAsync("MDW : 1 ");
-                await next();
-            });
-
             app.Run(async (context) =>
             {
+                throw new Exception("Some error processing your request");
                 await context.Response.WriteAsync("MDW : 2");
             });
         }
