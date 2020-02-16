@@ -28,20 +28,16 @@ namespace EmployeeManagement
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //app.UseFileServer(); 
-            //app.Use(async (context, next) =>
-            //{
-            //    await context.Response.WriteAsync("MDW : 1 ");
-            //    await next();
-            //});
+            
             if (env.IsDevelopment())
             {
-                DeveloperExceptionPageOptions developerExceptionPageOptions = new DeveloperExceptionPageOptions()
-                {
-                   SourceCodeLineCount = 1
-                };
-                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
+                app.UseDeveloperExceptionPage();
             }
+            else if(env.IsStaging() || env.IsProduction() || env.IsEnvironment("UAT"))
+            {
+                app.UseExceptionHandler("/Error");
+            }
+            app.UseStaticFiles();
             app.Run(async (context) =>
             {
                 throw new Exception("Some error processing your request");
