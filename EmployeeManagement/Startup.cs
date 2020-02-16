@@ -32,8 +32,10 @@ namespace EmployeeManagement
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseDefaultFiles(); // order is important for default files
+            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames.Clear();
+            defaultFilesOptions.DefaultFileNames.Add("CustomDefaultFile.html");
+            app.UseDefaultFiles(defaultFilesOptions); // order is important for default files
             app.UseStaticFiles(); // static file middleware
             
             app.Use(async (context, next) =>
