@@ -15,5 +15,10 @@ namespace EmployeeManagement.Controllers
         {
             return Json(_employeeRepository.GetEmployee(1));
         }
+
+        public ObjectResult Details()
+        {
+            return new ObjectResult(_employeeRepository.GetEmployee(1));
+        }
     }
 }
