@@ -25,5 +25,12 @@ namespace EmployeeManagement.Controllers
         {
             return View(_employeeRepository.GetEmployee(1));
         }
+
+        public ViewResult CustomView()
+        {
+            //return View("Test"); // using view name
+           // return View("CustomViews/Test.cshtml");  // using absolute path
+            return View("../../CustomViews/Test"); // relative path
+        }
     }
 }
