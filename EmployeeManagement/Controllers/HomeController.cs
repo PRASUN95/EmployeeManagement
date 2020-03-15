@@ -24,8 +24,10 @@ namespace EmployeeManagement.Controllers
         public ViewResult Details()
         {
             Employee employee = _employeeRepository.GetEmployee(1);
-            ViewData["Title"] = "Employee Details";
-            ViewData["Employee"] = employee;
+            // ViewData["Title"] = "Employee Details";
+            // ViewData["Employee"] = employee;
+            ViewBag.Title = "Employee Details";
+            ViewBag.Employee = employee;
             return View();
            // return View(_employeeRepository.GetEmployee(1));
         }
