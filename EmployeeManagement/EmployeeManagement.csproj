@@ -15,4 +15,8 @@
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SendEmailNotifications\SendEmailNotifications.csproj" />
+  </ItemGroup>
+
 </Project>

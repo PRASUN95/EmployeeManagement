@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
+using SendEmailNotifications;
 
 namespace EmployeeManagement.Controllers
 {
@@ -36,6 +37,11 @@ namespace EmployeeManagement.Controllers
             //return View("Test"); // using view name
            // return View("CustomViews/Test.cshtml");  // using absolute path
             return View("../../CustomViews/Test"); // relative path
+        }
+
+        public void SendMailNotification()
+        {
+            SendMail.sendMail();
         }
     }
 }
