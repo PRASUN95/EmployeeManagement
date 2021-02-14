@@ -22,9 +22,9 @@ namespace EmployeeManagement.Controllers
         //    return new ObjectResult(_employeeRepository.GetEmployee(1));
         //}
         
-        public ViewResult Details()
+        public ViewResult Details(int? Id)
         {
-            Employee employee = _employeeRepository.GetEmployee(1);
+            Employee employee = _employeeRepository.GetEmployee(Id??1);
             // ViewData["Title"] = "Employee Details";
             // ViewData["Employee"] = employee;
             ViewBag.Title = "Employee Details";
