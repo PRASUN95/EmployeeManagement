@@ -4,6 +4,7 @@ using SendEmailNotifications;
 
 namespace EmployeeManagement.Controllers
 {
+    [Route("Home")]
     public class HomeController : Controller
     {
         private IEmployeeRepository _employeeRepository;
@@ -12,6 +13,9 @@ namespace EmployeeManagement.Controllers
         {
             _employeeRepository = employeeRepository;
         }
+
+        [Route("Index")]
+        [Route("~/")]
         public JsonResult Index()
         {
             return Json(_employeeRepository.GetEmployee(1));
@@ -21,7 +25,7 @@ namespace EmployeeManagement.Controllers
         //{
         //    return new ObjectResult(_employeeRepository.GetEmployee(1));
         //}
-        
+        [Route("Details/{Id?}")]
         public ViewResult Details(int? Id)
         {
             Employee employee = _employeeRepository.GetEmployee(Id??1);
