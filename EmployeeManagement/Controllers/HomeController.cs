@@ -12,7 +12,8 @@ namespace EmployeeManagement.Controllers
         {
             _employeeRepository = employeeRepository;
         }
-        public JsonResult Index()
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
             return Json(_employeeRepository.GetEmployee(1));
         }

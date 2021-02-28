@@ -26,6 +26,7 @@ namespace EmployeeManagement
         {
             services.AddMvc().AddXmlSerializerFormatters();
             services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +41,10 @@ namespace EmployeeManagement
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(options => { 
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
             app.Run(async (context) =>
